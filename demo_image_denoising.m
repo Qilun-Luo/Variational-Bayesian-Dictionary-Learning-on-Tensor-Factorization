@@ -150,32 +150,4 @@ for i = 1:6
         end
         hold off
     end
-    
-    save_flag = 0;
-    
-    if save_flag
-        for j = 1:alg_cnt-1
-            if isfield(result_all, alg_name{j})
-                result_all.(alg_name{j}).image_name{end+1} = imageNames{i};
-                result_all.(alg_name{j}).cpu(end+1) = alg_cpu{j};
-                result_all.(alg_name{j}).rse(end+1) = alg_rse{j};
-                result_all.(alg_name{j}).psnr(end+1) = alg_psnr{j};
-                result_all.(alg_name{j}).ssim(end+1) = alg_ssim{j};
-            else
-                result_all.(alg_name{j}).image_name = {imageNames{i}};
-                result_all.(alg_name{j}).cpu = alg_cpu{j};
-                result_all.(alg_name{j}).rse= alg_rse{j};
-                result_all.(alg_name{j}).psnr= alg_psnr{j};
-                result_all.(alg_name{j}).ssim= alg_ssim{j};
-            end
-        end
-    end
-    
-end
-if save_flag
-    save_path = 'output/results_image_denoising';
-    if ~exist(save_path, 'dir')
-	    mkdir(save_path)
-    end
-    save(fullfile(save_path, 'demo_image_denoising_result_all.mat'), 'result_all');
 end
